@@ -1,552 +1,676 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon-cours.com - Plateforme Éducative</title>
+    <title>Mon Cours - Site Dynamique</title>
     <style>
-        /* Styles généraux */
+        /* ===== STYLES GÉNÉRAUX ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
         }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* En-tête */
+
+        /* ===== HEADER ===== */
         header {
-            background: linear-gradient(135deg, #4b6cb7, #182848);
+            background-color: #2c3e50;
             color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-        .header-content {
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        
-        .logo {
-            font-size: 28px;
+
+        .logo h1 {
+            font-size: 1.8rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
         }
-        
-        .logo span {
-            color: #ffcc00;
-        }
-        
-        nav ul {
+
+        .nav-links {
             display: flex;
             list-style: none;
+            gap: 2rem;
         }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
+
+        .nav-links a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
             transition: color 0.3s;
+            font-weight: 500;
         }
-        
-        nav ul li a:hover {
-            color: #ffcc00;
+
+        .nav-links a:hover {
+            color: #3498db;
         }
-        
-        /* Section de présentation */
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            min-height: 70vh;
+        }
+
+        /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(rgba(75, 108, 183, 0.8), rgba(24, 40, 72, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
             color: white;
-            padding: 80px 0;
-            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 3rem;
         }
-        
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        
+
         .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
-        
-        .btn {
-            display: inline-block;
-            background: #ffcc00;
-            color: #182848;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
+
+        /* ===== ARTICLES ===== */
+        .featured-article, .articles-list {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
             font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
         }
-        
-        .btn:hover {
-            background: #ffd84d;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e1e8ed;
         }
-        
-        /* Section article principal */
-        .featured-article {
-            padding: 80px 0;
-            background-color: white;
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
-        
-        .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .article-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .article-title {
-            font-size: 36px;
-            color: #182848;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-        
-        .article-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            color: #666;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
+
         .article-image {
             width: 100%;
-            height: 400px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            border-bottom: 1px solid #e1e8ed;
         }
-        
-        .article-body {
-            font-size: 18px;
-            line-height: 1.8;
+
+        .article-content {
+            padding: 2rem;
         }
-        
-        .article-body h2 {
-            color: #182848;
-            margin: 30px 0 15px;
+
+        .article-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+            font-weight: 600;
         }
-        
-        .article-body p {
-            margin-bottom: 20px;
+
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
         }
-        
+
+        .article-title a:hover {
+            color: #3498db;
+        }
+
+        .article-meta {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta::before {
+            content: "•";
+            margin-right: 0.5rem;
+        }
+
+        .article-excerpt {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
         .article-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin: 30px 0;
+            gap: 0.5rem;
         }
-        
+
         .tag {
-            background: #eef2ff;
-            color: #4b6cb7;
-            padding: 5px 15px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 0.85rem;
             font-weight: 500;
         }
-        
-        /* Section articles récents */
-        .articles {
-            padding: 80px 0;
-            background-color: #f5f7fa;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: #182848;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .article-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .article-card-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .article-card-content {
-            padding: 25px;
-        }
-        
-        .article-card-content h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #182848;
-        }
-        
-        .article-excerpt {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .article-card-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        
-        .article-card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 15px;
-        }
-        
-        .read-more {
-            color: #4b6cb7;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .read-more i {
-            margin-left: 5px;
-            transition: transform 0.3s;
-        }
-        
-        .read-more:hover i {
-            transform: translateX(5px);
-        }
-        
-        /* Section auteur */
-        .author-section {
-            padding: 60px 0;
-            background-color: white;
-        }
-        
-        .author-card {
-            background: #f5f7fa;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        
-        .author-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #4b6cb7;
-        }
-        
-        .author-info h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #182848;
-        }
-        
-        .author-bio {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .author-stats {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .stat {
+
+        /* ===== ARTICLE DÉTAILLÉ ===== */
+        .article-header {
+            margin-bottom: 2.5rem;
             text-align: center;
         }
-        
-        .stat-number {
-            font-size: 20px;
+
+        .article-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
             font-weight: 700;
-            color: #4b6cb7;
+            line-height: 1.2;
         }
-        
-        .stat-label {
-            font-size: 14px;
-            color: #666;
+
+        .article-meta-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
-        
-        /* Section commentaires */
-        .comments-section {
-            padding: 80px 0;
-            background-color: #f5f7fa;
+
+        .author-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #3498db;
         }
-        
-        .comments-form {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+        .author-info h3 {
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
-        
-        .comments-form h3 {
-            margin-bottom: 20px;
-            color: #182848;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
+
+        .article-image-large {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        
-        .comments-list {
             max-height: 500px;
-            overflow-y: auto;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        
+
+        .article-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .author-bio {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .author-bio h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* ===== COMMENTAIRES ===== */
+        .comments-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e1e8ed;
+        }
+
+        .comments-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
         .comment {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #4b6cb7;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            border: 1px solid #e1e8ed;
         }
-        
+
         .comment-header {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f1f1f1;
         }
-        
+
         .comment-author {
             font-weight: 600;
-            color: #4b6cb7;
+            color: #2c3e50;
+            font-size: 1.1rem;
         }
-        
+
         .comment-date {
-            color: #666;
-            font-size: 14px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
         }
-        
-        /* Section partage */
-        .share-section {
-            padding: 40px 0;
-            background-color: white;
+
+        .comment-text {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        #comment-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        #comment-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        #comment-form textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        #comment-form button {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #comment-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        }
+
+        /* ===== ADMINISTRATION ===== */
+        #login-section, #admin-panel {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .admin-title {
             text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            font-weight: 700;
         }
-        
-        .share-buttons {
+
+        #login-form input, #article-form input, #article-form select, #article-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        #login-form input:focus, #article-form input:focus, 
+        #article-form select:focus, #article-form textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        #article-form textarea {
+            min-height: 300px;
+            resize: vertical;
+        }
+
+        #article-form button, #login-form button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        #article-form button:hover, #login-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .existing-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e1e8ed;
+        }
+
+        .article-actions {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
         }
-        
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 30px;
+
+        .article-actions a, .article-actions button {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
             text-decoration: none;
-            color: white;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
-        
-        .share-btn:hover {
-            transform: translateY(-3px);
-        }
-        
-        .facebook {
-            background: #3b5998;
-        }
-        
-        .twitter {
-            background: #1da1f2;
-        }
-        
-        .linkedin {
-            background: #0077b5;
-        }
-        
-        .whatsapp {
-            background: #25d366;
-        }
-        
-        /* Pied de page */
-        footer {
-            background: #182848;
+
+        .article-actions a {
+            background: #3498db;
             color: white;
-            padding: 60px 0 20px;
         }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+
+        .article-actions button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
-        
-        .footer-column h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #ffcc00;
+
+        .article-actions a:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
         }
-        
-        .footer-column ul {
-            list-style: none;
+
+        .article-actions button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
         }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
+
+        /* ===== UTILITAIRES ===== */
+        .hidden {
+            display: none !important;
         }
-        
-        .footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: #ffcc00;
-        }
-        
-        .copyright {
+
+        .loading {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            font-size: 14px;
+            padding: 3rem;
+            color: #7f8c8d;
+            font-size: 1.1rem;
         }
-        
-        /* Responsive */
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .success {
+            background: #2ecc71;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .header-content {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .article-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .article-meta-large {
                 flex-direction: column;
                 text-align: center;
             }
             
-            nav ul {
-                margin-top: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
+            #login-section, #admin-panel {
+                padding: 2rem 1rem;
+                margin: 1rem;
             }
             
-            nav ul li {
-                margin: 5px 10px;
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .author-card {
+            .article-actions {
                 flex-direction: column;
-                text-align: center;
-            }
-            
-            .author-stats {
-                justify-content: center;
-            }
-            
-            .article-image {
-                height: 250px;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-        import { getFirestore, collection, addDoc, getDocs, onSnapshot, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Mon Cours</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Accueil</a></li>
+                <li><a href="#" onclick="showPage('admin')">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        // Your web app's Firebase configuration
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Page d'accueil -->
+        <div id="home-page">
+            <section class="hero">
+                <h2>Bienvenue sur Mon Cours</h2>
+                <p>Découvrez nos articles éducatifs et enrichissants</p>
+            </section>
+
+            <section class="featured-article">
+                <h2 class="section-title">Article à la une</h2>
+                <div id="featured-article-content" class="loading">
+                    Chargement de l'article vedette...
+                </div>
+            </section>
+
+            <section class="articles-list">
+                <h2 class="section-title">Tous les articles</h2>
+                <div id="articles-container" class="loading">
+                    Chargement des articles...
+                </div>
+            </section>
+        </div>
+
+        <!-- Page d'article -->
+        <div id="article-page" class="hidden">
+            <article id="article-content" class="loading">
+                Chargement de l'article...
+            </article>
+
+            <section class="comments-section">
+                <h2>Commentaires</h2>
+                <div id="comments-container" class="loading">
+                    Chargement des commentaires...
+                </div>
+                <form id="comment-form">
+                    <textarea id="comment-text" placeholder="Partagez vos pensées..." required></textarea>
+                    <button type="submit">Publier le commentaire</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- Page d'administration -->
+        <div id="admin-page" class="hidden">
+            <section id="login-section">
+                <h2 class="admin-title">Connexion Admin</h2>
+                <form id="login-form">
+                    <input type="email" id="email" placeholder="Email administrateur" required>
+                    <input type="password" id="password" placeholder="Mot de passe" required>
+                    <button type="submit">Se connecter</button>
+                </form>
+            </section>
+
+            <section id="admin-panel" class="hidden">
+                <h2 class="admin-title">Publier un nouvel article</h2>
+                <form id="article-form">
+                    <div class="form-group">
+                        <label for="title">Titre de l'article</label>
+                        <input type="text" id="title" placeholder="Titre attractif..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="slug">Slug (URL)</label>
+                        <input type="text" id="slug" placeholder="ex: histoire-afrique" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Catégorie</label>
+                        <select id="category" required>
+                            <option value="">Choisir une catégorie</option>
+                            <option value="histoire">Histoire</option>
+                            <option value="science">Science</option>
+                            <option value="litterature">Littérature</option>
+                            <option value="art">Art</option>
+                            <option value="technologie">Technologie</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content">Contenu de l'article</label>
+                        <textarea id="content" placeholder="Rédigez votre article ici..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <input type="text" id="tags" placeholder="éducation, histoire, afrique (séparés par des virgules)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="author">Auteur</label>
+                        <input type="text" id="author" placeholder="Nom de l'auteur" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="author-bio">Biographie de l'auteur</label>
+                        <textarea id="author-bio" placeholder="Présentation de l'auteur..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="main-image">Image principale</label>
+                        <input type="file" id="main-image" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="author-photo">Photo de l'auteur</label>
+                        <input type="file" id="author-photo" accept="image/*">
+                    </div>
+                    
+                    <button type="submit">Publier l'article</button>
+                </form>
+
+                <section class="existing-articles">
+                    <h2 class="section-title">Articles existants</h2>
+                    <div id="articles-list" class="loading">
+                        Chargement des articles...
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Mon Cours. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+    <script>
+        // ===== CONFIGURATION FIREBASE =====
         const firebaseConfig = {
             apiKey: "AIzaSyDGApx2H_xbmE_nupoT1ejskREG5J6BsY8",
             authDomain: "mon-cours-895f2.firebaseapp.com",
@@ -557,412 +681,451 @@
             measurementId: "G-X62EEFG59D"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
+        // Initialiser Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const storage = firebase.storage();
 
-        // Références aux collections
-        const articlesRef = collection(db, "articles");
-        const commentairesRef = collection(db, "commentaires");
+        // ===== GESTION DES PAGES =====
+        let currentArticleSlug = null;
 
-        // Fonction pour formater la date
-        function formaterDate(dateString) {
-            const date = new Date(dateString);
+        function showPage(page) {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('article-page').classList.add('hidden');
+            document.getElementById('admin-page').classList.add('hidden');
+            
+            switch(page) {
+                case 'home':
+                    document.getElementById('home-page').classList.remove('hidden');
+                    loadArticlesForHomepage();
+                    break;
+                case 'article':
+                    document.getElementById('article-page').classList.remove('hidden');
+                    break;
+                case 'admin':
+                    document.getElementById('admin-page').classList.remove('hidden');
+                    checkAuthState();
+                    break;
+            }
+        }
+
+        // ===== AUTHENTIFICATION =====
+        function checkAuthState() {
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    document.getElementById('login-section').classList.add('hidden');
+                    document.getElementById('admin-panel').classList.remove('hidden');
+                    loadExistingArticles();
+                } else {
+                    document.getElementById('login-section').classList.remove('hidden');
+                    document.getElementById('admin-panel').classList.add('hidden');
+                }
+            });
+        }
+
+        function login(email, password) {
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    showMessage('Connexion réussie!', 'success');
+                })
+                .catch(error => {
+                    showMessage('Erreur de connexion: ' + error.message, 'error');
+                });
+        }
+
+        function logout() {
+            auth.signOut().then(() => {
+                showMessage('Déconnexion réussie!', 'success');
+                showPage('home');
+            });
+        }
+
+        // ===== GESTION DES ARTICLES =====
+        async function publishArticle() {
+            const title = document.getElementById('title').value;
+            const slug = document.getElementById('slug').value;
+            const category = document.getElementById('category').value;
+            const content = document.getElementById('content').value;
+            const tags = document.getElementById('tags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
+            const author = document.getElementById('author').value;
+            const authorBio = document.getElementById('author-bio').value;
+            const mainImageFile = document.getElementById('main-image').files[0];
+            const authorPhotoFile = document.getElementById('author-photo').files[0];
+            
+            try {
+                let mainImageURL = '';
+                let authorPhotoURL = '';
+                
+                if (mainImageFile) {
+                    mainImageURL = await uploadImage(mainImageFile, `articles/${slug}/main-image`);
+                }
+                
+                if (authorPhotoFile) {
+                    authorPhotoURL = await uploadImage(authorPhotoFile, `authors/${author}`);
+                }
+                
+                const articleData = {
+                    title,
+                    slug,
+                    category,
+                    content,
+                    tags,
+                    author,
+                    authorBio,
+                    mainImage: mainImageURL,
+                    authorPhoto: authorPhotoURL,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    published: true
+                };
+                
+                await db.collection('articles').doc(slug).set(articleData);
+                
+                showMessage('Article publié avec succès!', 'success');
+                document.getElementById('article-form').reset();
+                loadExistingArticles();
+                
+            } catch (error) {
+                showMessage('Erreur lors de la publication: ' + error.message, 'error');
+            }
+        }
+
+        function uploadImage(file, path) {
+            return new Promise((resolve, reject) => {
+                const storageRef = storage.ref();
+                const imageRef = storageRef.child(`${path}/${Date.now()}_${file.name}`);
+                
+                const uploadTask = imageRef.put(file);
+                
+                uploadTask.on('state_changed',
+                    null,
+                    (error) => reject(error),
+                    () => {
+                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                            resolve(downloadURL);
+                        });
+                    }
+                );
+            });
+        }
+
+        async function loadArticlesForHomepage() {
+            try {
+                const snapshot = await db.collection('articles')
+                    .where('published', '==', true)
+                    .orderBy('createdAt', 'desc')
+                    .get();
+                
+                if (snapshot.empty) {
+                    document.getElementById('featured-article-content').innerHTML = '<p class="loading">Aucun article publié pour le moment.</p>';
+                    document.getElementById('articles-container').innerHTML = '<p class="loading">Revenez bientôt pour découvrir nos premiers articles!</p>';
+                    return;
+                }
+                
+                const articles = [];
+                snapshot.forEach(doc => {
+                    articles.push({ id: doc.id, ...doc.data() });
+                });
+                
+                if (articles.length > 0) {
+                    displayFeaturedArticle(articles[0]);
+                }
+                
+                if (articles.length > 1) {
+                    displayArticlesList(articles.slice(1));
+                } else {
+                    document.getElementById('articles-container').innerHTML = '<p class="loading">D\'autres articles seront bientôt disponibles!</p>';
+                }
+                
+            } catch (error) {
+                showMessage('Erreur lors du chargement des articles: ' + error.message, 'error');
+            }
+        }
+
+        function displayFeaturedArticle(article) {
+            const featuredContainer = document.getElementById('featured-article-content');
+            
+            const articleHTML = `
+                <div class="article-card">
+                    ${article.mainImage ? `<img src="${article.mainImage}" alt="${article.title}" class="article-image">` : ''}
+                    <div class="article-content">
+                        <h2 class="article-title">
+                            <a href="#" onclick="loadArticle('${article.slug}')">${article.title}</a>
+                        </h2>
+                        <div class="article-meta">
+                            Par ${article.author} • ${formatDate(article.createdAt)} • ${article.category}
+                        </div>
+                        <div class="article-excerpt">
+                            ${article.content.substring(0, 250)}...
+                        </div>
+                        <div class="article-tags">
+                            ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            featuredContainer.innerHTML = articleHTML;
+        }
+
+        function displayArticlesList(articles) {
+            const container = document.getElementById('articles-container');
+            
+            if (articles.length === 0) {
+                container.innerHTML = '<p class="loading">Aucun autre article pour le moment.</p>';
+                return;
+            }
+            
+            const articlesHTML = articles.map(article => `
+                <div class="article-card">
+                    ${article.mainImage ? `<img src="${article.mainImage}" alt="${article.title}" class="article-image">` : ''}
+                    <div class="article-content">
+                        <h3 class="article-title">
+                            <a href="#" onclick="loadArticle('${article.slug}')">${article.title}</a>
+                        </h3>
+                        <div class="article-meta">
+                            Par ${article.author} • ${formatDate(article.createdAt)} • ${article.category}
+                        </div>
+                        <div class="article-excerpt">
+                            ${article.content.substring(0, 150)}...
+                        </div>
+                        <div class="article-tags">
+                            ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = articlesHTML;
+        }
+
+        async function loadArticle(slug) {
+            currentArticleSlug = slug;
+            showPage('article');
+            
+            try {
+                const doc = await db.collection('articles').doc(slug).get();
+                
+                if (!doc.exists) {
+                    document.getElementById('article-content').innerHTML = '<p class="error">Article non trouvé.</p>';
+                    return;
+                }
+                
+                const article = { id: doc.id, ...doc.data() };
+                displayArticle(article);
+                loadComments(slug);
+                
+            } catch (error) {
+                document.getElementById('article-content').innerHTML = '<p class="error">Erreur lors du chargement de l\'article.</p>';
+            }
+        }
+
+        function displayArticle(article) {
+            const container = document.getElementById('article-content');
+            
+            const articleHTML = `
+                <div class="article-header">
+                    <h1>${article.title}</h1>
+                    <div class="article-meta-large">
+                        ${article.authorPhoto ? `<img src="${article.authorPhoto}" alt="${article.author}" class="author-photo">` : ''}
+                        <div class="author-info">
+                            <h3>${article.author}</h3>
+                            <p>Publié le ${formatDate(article.createdAt)} • ${article.category}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                ${article.mainImage ? `<img src="${article.mainImage}" alt="${article.title}" class="article-image-large">` : ''}
+                
+                <div class="article-body">
+                    ${article.content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                </div>
+                
+                ${article.authorBio ? `
+                <div class="author-bio">
+                    <h3>À propos de l'auteur</h3>
+                    <p>${article.authorBio}</p>
+                </div>
+                ` : ''}
+                
+                <div class="article-tags">
+                    ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+            `;
+            
+            container.innerHTML = articleHTML;
+            document.title = `${article.title} - Mon Cours`;
+        }
+
+        async function loadExistingArticles() {
+            try {
+                const snapshot = await db.collection('articles').orderBy('createdAt', 'desc').get();
+                const container = document.getElementById('articles-list');
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p class="loading">Aucun article publié pour le moment.</p>';
+                    return;
+                }
+                
+                const articlesHTML = snapshot.docs.map(doc => {
+                    const article = { id: doc.id, ...doc.data() };
+                    return `
+                        <div class="article-card">
+                            <div class="article-content">
+                                <h3>${article.title}</h3>
+                                <div class="article-meta">
+                                    Slug: ${article.slug} • Publié le: ${formatDate(article.createdAt)}
+                                </div>
+                                <div class="article-actions">
+                                    <a href="#" onclick="loadArticle('${article.slug}')">Voir l'article</a>
+                                    <button onclick="deleteArticle('${article.slug}')">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                container.innerHTML = articlesHTML;
+                
+            } catch (error) {
+                showMessage('Erreur lors du chargement des articles: ' + error.message, 'error');
+            }
+        }
+
+        async function deleteArticle(slug) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet article?')) {
+                try {
+                    await db.collection('articles').doc(slug).delete();
+                    showMessage('Article supprimé avec succès!', 'success');
+                    loadExistingArticles();
+                } catch (error) {
+                    showMessage('Erreur lors de la suppression: ' + error.message, 'error');
+                }
+            }
+        }
+
+        // ===== GESTION DES COMMENTAIRES =====
+        async function loadComments(articleSlug) {
+            try {
+                const snapshot = await db.collection('comments')
+                    .where('articleSlug', '==', articleSlug)
+                    .orderBy('createdAt', 'asc')
+                    .get();
+                
+                const container = document.getElementById('comments-container');
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<p class="loading">Aucun commentaire pour le moment. Soyez le premier à commenter!</p>';
+                    return;
+                }
+                
+                const commentsHTML = snapshot.docs.map(doc => {
+                    const comment = { id: doc.id, ...doc.data() };
+                    return `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <span class="comment-author">${comment.authorName || 'Anonyme'}</span>
+                                <span class="comment-date">${formatDate(comment.createdAt)}</span>
+                            </div>
+                            <div class="comment-text">${comment.text}</div>
+                        </div>
+                    `;
+                }).join('');
+                
+                container.innerHTML = commentsHTML;
+                
+            } catch (error) {
+                document.getElementById('comments-container').innerHTML = '<p class="error">Erreur lors du chargement des commentaires.</p>';
+            }
+        }
+
+        async function addComment(articleSlug, text) {
+            if (!text.trim()) {
+                showMessage('Veuillez saisir un commentaire.', 'error');
+                return;
+            }
+            
+            try {
+                const authorName = prompt('Veuillez saisir votre nom:') || 'Anonyme';
+                
+                const commentData = {
+                    articleSlug,
+                    text,
+                    authorName,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                
+                await db.collection('comments').add(commentData);
+                document.getElementById('comment-text').value = '';
+                loadComments(articleSlug);
+                showMessage('Commentaire publié avec succès!', 'success');
+                
+            } catch (error) {
+                showMessage('Erreur lors de l\'ajout du commentaire: ' + error.message, 'error');
+            }
+        }
+
+        // ===== FONCTIONS UTILITAIRES =====
+        function formatDate(timestamp) {
+            if (!timestamp) return 'Date inconnue';
+            const date = timestamp.toDate();
             return date.toLocaleDateString('fr-FR', {
                 year: 'numeric',
                 month: 'long',
-                day: 'numeric'
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
             });
         }
 
-        // Fonction pour créer le slug d'un article
-        function creerSlug(titre) {
-            return titre
-                .toLowerCase()
-                .replace(/[^a-z0-9 -]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .trim();
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type;
+            messageDiv.textContent = message;
+            
+            document.querySelector('main').insertBefore(messageDiv, document.querySelector('main').firstChild);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
         }
 
-        // Fonction pour afficher les articles
-        function afficherArticles(articles) {
-            const container = document.getElementById('articles-container');
-            container.innerHTML = '';
-            
-            articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            articles.forEach(doc => {
-                const article = doc.data();
-                const date = formaterDate(article.date);
-                const slug = creerSlug(article.titre);
-                
-                const articleCard = document.createElement('div');
-                articleCard.className = 'article-card';
-                articleCard.innerHTML = `
-                    <div class="article-card-image" style="background-image: url('${article.image}')"></div>
-                    <div class="article-card-content">
-                        <h3>${article.titre}</h3>
-                        <div class="article-card-meta">
-                            <span><i class="far fa-calendar"></i> ${date}</span>
-                            <span><i class="far fa-user"></i> ${article.auteur}</span>
-                        </div>
-                        <div class="article-card-tags">
-                            ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
-                        <p class="article-excerpt">${article.contenu.substring(0, 150)}...</p>
-                        <a href="article-${slug}.html?id=${doc.id}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                `;
-                
-                container.appendChild(articleCard);
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuration des événements
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                login(email, password);
             });
-        }
-
-        // Fonction pour afficher l'article principal
-        function afficherArticlePrincipal() {
-            // Article d'exemple
-            const articlePrincipal = {
-                titre: "La Révolution Française : Causes et Conséquences",
-                auteur: "Dr. Martin Dubois",
-                date: "2023-11-15",
-                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-                contenu: `
-                    <h2>Introduction</h2>
-                    <p>La Révolution française (1789-1799) fut une période de transformation radicale de la société française qui mit fin à l'Ancien Régime et posa les bases de la France moderne. Cet événement majeur de l'histoire européenne continue d'influencer notre conception de la démocratie et des droits de l'homme.</p>
-                    
-                    <h2>Les Causes de la Révolution</h2>
-                    <p>Plusieurs facteurs ont contribué au déclenchement de la Révolution :</p>
-                    <p><strong>1. La crise financière :</strong> L'État français était au bord de la banqueroute en raison des dépenses excessives de la cour et des guerres coûteuses.</p>
-                    <p><strong>2. Les inégalités sociales :</strong> La société était divisée en trois ordres inégaux, avec le Tiers État supportant la charge fiscale principale.</p>
-                    <p><strong>3. Les mauvaises récoltes :</strong> Plusieurs années de mauvaises récoltes ont provoqué une hausse des prix du pain et des famines.</p>
-                    
-                    <h2>Les Principales Étapes</h2>
-                    <p>La Révolution s'est déroulée en plusieurs phases marquantes :</p>
-                    <p>• <strong>1789-1791 :</strong> Monarchie constitutionnelle et réformes</p>
-                    <p>• <strong>1792-1794 :</strong> République et Terreur</p>
-                    <p>• <strong>1795-1799 :</strong> Directoire et montée de Napoléon</p>
-                    
-                    <h2>L'Héritage de la Révolution</h2>
-                    <p>La Révolution française a laissé un héritage durable :</p>
-                    <p>• Déclaration des Droits de l'Homme et du Citoyen</p>
-                    <p>• Abolition des privilèges féodaux</p>
-                    <p>• Séparation de l'Église et de l'État</p>
-                    <p>• Création du système métrique</p>
-                    <p>• Diffusion des idées républicaines en Europe</p>
-                    
-                    <h2>Conclusion</h2>
-                    <p>La Révolution française reste un tournant fondamental dans l'histoire mondiale, marquant la transition vers les sociétés modernes et démocratiques. Ses idéaux de liberté, d'égalité et de fraternité continuent d'inspirer les mouvements démocratiques à travers le monde.</p>
-                `,
-                tags: ["Histoire", "Révolution Française", "Démocratie", "Europe"]
-            };
-
-            document.getElementById('article-titre').textContent = articlePrincipal.titre;
-            document.getElementById('article-auteur').textContent = articlePrincipal.auteur;
-            document.getElementById('article-date').textContent = formaterDate(articlePrincipal.date);
-            document.getElementById('article-image').src = articlePrincipal.image;
-            document.getElementById('article-contenu').innerHTML = articlePrincipal.contenu;
             
-            // Afficher les tags
-            const tagsContainer = document.getElementById('article-tags');
-            tagsContainer.innerHTML = articlePrincipal.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-        }
-
-        // Fonction pour afficher les commentaires
-        function afficherCommentaires(commentaires) {
-            const container = document.getElementById('commentaires-container');
-            container.innerHTML = '';
-            
-            commentaires.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            if (commentaires.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #666;">Aucun commentaire pour le moment. Soyez le premier à commenter !</p>';
-                return;
-            }
-            
-            commentaires.forEach(doc => {
-                const commentaire = doc.data();
-                const date = new Date(commentaire.date).toLocaleDateString('fr-FR');
-                
-                const commentaireDiv = document.createElement('div');
-                commentaireDiv.className = 'comment';
-                commentaireDiv.innerHTML = `
-                    <div class="comment-header">
-                        <span class="comment-author">${commentaire.nom}</span>
-                        <span class="comment-date">${date}</span>
-                    </div>
-                    <p>${commentaire.commentaire}</p>
-                `;
-                
-                container.appendChild(commentaireDiv);
+            document.getElementById('article-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                publishArticle();
             });
-        }
-
-        // Fonction pour ajouter un commentaire
-        window.ajouterCommentaire = async function() {
-            const nom = document.getElementById('nom').value;
-            const commentaire = document.getElementById('commentaire').value;
             
-            if (!nom || !commentaire) {
-                alert('Veuillez remplir tous les champs');
-                return;
-            }
-            
-            try {
-                await addDoc(commentairesRef, {
-                    nom: nom,
-                    commentaire: commentaire,
-                    date: new Date().toISOString(),
-                    articleId: 'article-principal'
-                });
-                
-                // Réinitialiser le formulaire
-                document.getElementById('nom').value = '';
-                document.getElementById('commentaire').value = '';
-                
-                alert('Commentaire ajouté avec succès!');
-            } catch (error) {
-                console.error('Erreur lors de l\'ajout du commentaire:', error);
-                alert('Erreur lors de l\'ajout du commentaire');
-            }
-        };
+            document.getElementById('comment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const commentText = document.getElementById('comment-text').value;
+                if (currentArticleSlug) {
+                    addComment(currentArticleSlug, commentText);
+                }
+            });
 
-        // Charger les données au démarrage
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
-                // Afficher l'article principal
-                afficherArticlePrincipal();
-
-                // Charger les articles
-                const articlesSnapshot = await getDocs(articlesRef);
-                const articles = [];
-                articlesSnapshot.forEach((doc) => {
-                    articles.push({ id: doc.id, ...doc.data() });
-                });
-                afficherArticles(articles);
-
-                // Charger les commentaires
-                const commentairesSnapshot = await getDocs(commentairesRef);
-                const commentaires = [];
-                commentairesSnapshot.forEach((doc) => {
-                    commentaires.push(doc);
-                });
-                afficherCommentaires(commentaires);
-                
-                // Écouter les nouveaux commentaires en temps réel
-                onSnapshot(commentairesRef, (snapshot) => {
-                    const nouveauxCommentaires = [];
-                    snapshot.forEach((doc) => {
-                        nouveauxCommentaires.push(doc);
-                    });
-                    afficherCommentaires(nouveauxCommentaires);
-                });
-            } catch (error) {
-                console.error('Erreur lors du chargement:', error);
-            }
+            // Afficher la page d'accueil par défaut
+            showPage('home');
         });
 
-        // Fonction pour partager sur les réseaux sociaux
-        window.partagerArticle = function(reseau) {
-            const titre = document.getElementById('article-titre').textContent;
-            const url = window.location.href;
-            const texte = `Découvrez cet article: ${titre}`;
-            let partageUrl = '';
+        // Gestion des URLs pour GitHub Pages
+        window.addEventListener('load', function() {
+            const path = window.location.pathname;
+            const slug = path.split('/').pop();
             
-            switch(reseau) {
-                case 'facebook':
-                    partageUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                    break;
-                case 'twitter':
-                    partageUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(texte)}&url=${encodeURIComponent(url)}`;
-                    break;
-                case 'linkedin':
-                    partageUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-                    break;
-                case 'whatsapp':
-                    partageUrl = `https://wa.me/?text=${encodeURIComponent(texte + ' ' + url)}`;
-                    break;
+            if (slug && slug !== '' && slug !== 'index.html') {
+                loadArticle(slug);
             }
-            
-            window.open(partageUrl, '_blank', 'width=600,height=400');
-        };
+        });
     </script>
-</head>
-<body>
-    <!-- En-tête -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">mon<span>-cours</span>.com</div>
-                <nav>
-                    <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#articles">Articles</a></li>
-                        <li><a href="#auteur">Auteur</a></li>
-                        <li><a href="#commentaires">Commentaires</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Article principal -->
-    <section class="featured-article" id="article-principal">
-        <div class="container">
-            <div class="article-content">
-                <div class="article-header">
-                    <h1 class="article-title" id="article-titre">La Révolution Française : Causes et Conséquences</h1>
-                    <div class="article-meta">
-                        <span><i class="far fa-user"></i> <span id="article-auteur">Dr. Martin Dubois</span></span>
-                        <span><i class="far fa-calendar"></i> <span id="article-date">15 novembre 2023</span></span>
-                    </div>
-                </div>
-                
-                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Image de la Révolution Française" class="article-image" id="article-image">
-                
-                <div class="article-tags" id="article-tags">
-                    <!-- Les tags seront ajoutés dynamiquement -->
-                </div>
-                
-                <div class="article-body" id="article-contenu">
-                    <!-- Le contenu de l'article sera ajouté dynamiquement -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section partage -->
-    <section class="share-section">
-        <div class="container">
-            <h3>Partagez cet article</h3>
-            <div class="share-buttons">
-                <a href="#" class="share-btn facebook" onclick="partagerArticle('facebook')">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </a>
-                <a href="#" class="share-btn twitter" onclick="partagerArticle('twitter')">
-                    <i class="fab fa-twitter"></i> Twitter
-                </a>
-                <a href="#" class="share-btn linkedin" onclick="partagerArticle('linkedin')">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn
-                </a>
-                <a href="#" class="share-btn whatsapp" onclick="partagerArticle('whatsapp')">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section auteur -->
-    <section class="author-section" id="auteur">
-        <div class="container">
-            <div class="section-title">
-                <h2>À Propos de l'Auteur</h2>
-                <p>Découvrez l'expert derrière cet article</p>
-            </div>
-            <div class="author-card">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Photo de Dr. Martin Dubois" class="author-avatar">
-                <div class="author-info">
-                    <h3>Dr. Martin Dubois</h3>
-                    <p class="author-bio">Docteur en Histoire et passionné d'éducation, je partage mes connaissances à travers des articles accessibles et bien documentés. Spécialiste de l'histoire moderne européenne, j'enseigne à l'université depuis plus de 10 ans et suis l'auteur de plusieurs ouvrages sur la période révolutionnaire.</p>
-                    <div class="author-stats">
-                        <div class="stat">
-                            <div class="stat-number">24</div>
-                            <div class="stat-label">Articles</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">156</div>
-                            <div class="stat-label">Commentaires</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">5 ans</div>
-                            <div class="stat-label">Expérience</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section articles récents -->
-    <section class="articles" id="articles">
-        <div class="container">
-            <div class="section-title">
-                <h2>Articles Récents</h2>
-                <p>Découvrez nos autres publications éducatives</p>
-            </div>
-            <div class="articles-grid" id="articles-container">
-                <!-- Les articles seront chargés ici dynamiquement -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Section commentaires -->
-    <section class="comments-section" id="commentaires">
-        <div class="container">
-            <div class="section-title">
-                <h2>Espace Commentaires</h2>
-                <p>Partagez vos réflexions et posez vos questions sur cet article</p>
-            </div>
-            
-            <div class="comments-form">
-                <h3>Laisser un commentaire</h3>
-                <div class="form-group">
-                    <label for="nom">Votre nom :</label>
-                    <input type="text" id="nom" placeholder="Votre nom">
-                </div>
-                <div class="form-group">
-                    <label for="commentaire">Votre commentaire :</label>
-                    <textarea id="commentaire" placeholder="Partagez votre avis ou posez une question..."></textarea>
-                </div>
-                <button class="btn" onclick="ajouterCommentaire()">Publier le commentaire</button>
-            </div>
-            
-            <div class="comments-list" id="commentaires-container">
-                <!-- Les commentaires seront chargés ici dynamiquement -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Pied de page -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Mon-cours.com</h3>
-                    <p>Votre plateforme d'apprentissage en ligne pour progresser à votre rythme.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#articles">Articles</a></li>
-                        <li><a href="#auteur">Auteurs</a></li>
-                        <li><a href="#commentaires">Commentaires</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Catégories</h3>
-                    <ul>
-                        <li><a href="#">Histoire</a></li>
-                        <li><a href="#">Français</a></li>
-                        <li><a href="#">SVT</a></li>
-                        <li><a href="#">Philosophie</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><a href="mailto:contact@mon-cours.com">contact@mon-cours.com</a></li>
-                        <li><a href="#">Mentions légales</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Mon-cours.com - Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
